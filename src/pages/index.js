@@ -6,6 +6,7 @@ import Home from './Home';
 import Account from './Account';
 import EditProfile from './EditProfile';
 import Success from './Success';
+import MenuSlp from './MenuSlp';
 
 
 
@@ -17,6 +18,7 @@ import Success from './Success';
 export {
   Splash,
   GetStarted,
+  MenuSlp,
   Register,
   Success,
   Login,

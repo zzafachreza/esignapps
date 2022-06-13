@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
 import { colors } from '../utils/colors';
 import { color } from 'react-native-reanimated';
-import { Account, EditProfile, GetStarted, Home, Login, Register, Splash, Success } from '../pages';
+import { Account, EditProfile, GetStarted, Home, Login, MenuSlp, Register, Splash, Success } from '../pages';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -51,6 +51,14 @@ export default function Router() {
       <Stack.Screen
         name="Success"
         component={Success}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="MenuSlp"
+        component={MenuSlp}
         options={{
           headerShown: false,
         }}

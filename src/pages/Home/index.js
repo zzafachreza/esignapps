@@ -54,15 +54,7 @@ export default function Home({ navigation }) {
 
   const __getDataUserInfo = () => {
     getData('user').then(users => {
-      console.log(users);
       setUser(users);
-      axios.post(urlAPI + '/1_cart.php', {
-        fid_user: users.id
-      }).then(res => {
-        console.log('cart', res.data);
-
-        setCart(parseFloat(res.data))
-      })
       getData('token').then(res => {
         console.log('data token,', res);
         setToken(res.token);
@@ -196,7 +188,7 @@ export default function Home({ navigation }) {
         }}>
         <DataKategori
           warna={colors.secondary}
-          onPress={() => navigation.navigate('ListData')}
+          onPress={() => navigation.navigate('MenuSlp', user)}
           icon="log-out-outline"
           nama="Personal Site"
           nama2="Leaving Permit (SLP)"

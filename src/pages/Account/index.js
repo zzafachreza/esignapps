@@ -36,7 +36,7 @@ export default function Account({ navigation, route }) {
   }, [isFocused]);
 
   const btnKeluar = () => {
-    storeData('user', {});
+    storeData('user', null);
 
     navigation.replace('Login');
   };
