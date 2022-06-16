@@ -52,14 +52,6 @@ export default function Account({ navigation, route }) {
   return (
     <SafeAreaView>
       <ScrollView style={{ padding: 10 }}>
-        <View style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-          <Image source={{
-            uri: user.foto_user,
-          }} style={{ width: 120, height: 120, borderRadius: 10, }} />
-        </View>
 
         {/* data detail */}
         <View style={{ padding: 10 }}>
@@ -68,7 +60,29 @@ export default function Account({ navigation, route }) {
           <View>
             <View
               style={{
-                marginVertical: 5,
+                marginVertical: 2,
+                padding: 10,
+                backgroundColor: colors.white,
+                borderRadius: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.black,
+                }}>
+                NIK
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[400],
+                  color: colors.primary,
+                }}>
+                {user.nik}
+              </Text>
+            </View>
+            <View
+              style={{
+                marginVertical: 2,
                 padding: 10,
                 backgroundColor: colors.white,
                 borderRadius: 10,
@@ -91,7 +105,31 @@ export default function Account({ navigation, route }) {
 
             <View
               style={{
-                marginVertical: 5,
+                marginVertical: 2,
+                padding: 10,
+                backgroundColor: colors.white,
+                borderRadius: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.black,
+                }}>
+                Departement
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[400],
+                  color: colors.primary,
+                }}>
+                {user.nama_departement}
+              </Text>
+            </View>
+
+
+            <View
+              style={{
+                marginVertical: 2,
                 padding: 10,
                 backgroundColor: colors.white,
                 borderRadius: 10,
@@ -115,7 +153,7 @@ export default function Account({ navigation, route }) {
 
             <View
               style={{
-                marginVertical: 5,
+                marginVertical: 2,
                 padding: 10,
                 backgroundColor: colors.white,
                 borderRadius: 10,
@@ -136,32 +174,11 @@ export default function Account({ navigation, route }) {
               </Text>
             </View>
 
-            <View
-              style={{
-                marginVertical: 5,
-                padding: 10,
-                backgroundColor: colors.white,
-                borderRadius: 10,
-              }}>
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[600],
-                  color: colors.black,
-                }}>
-                Email Gmail / Ymail
-              </Text>
-              <Text
-                style={{
-                  fontFamily: fonts.secondary[400],
-                  color: colors.primary,
-                }}>
-                {user.email}
-              </Text>
-            </View>
+
 
             <View
               style={{
-                marginVertical: 5,
+                marginVertical: 2,
                 padding: 10,
                 backgroundColor: colors.white,
                 borderRadius: 10,
@@ -184,7 +201,7 @@ export default function Account({ navigation, route }) {
 
             <View
               style={{
-                marginVertical: 5,
+                marginVertical: 2,
                 padding: 10,
                 backgroundColor: colors.white,
                 borderRadius: 10,
@@ -207,7 +224,7 @@ export default function Account({ navigation, route }) {
 
             <View
               style={{
-                marginVertical: 5,
+                marginVertical: 2,
                 padding: 10,
                 backgroundColor: colors.white,
                 borderRadius: 10,

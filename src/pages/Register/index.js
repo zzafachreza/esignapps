@@ -23,10 +23,12 @@ export default function Register({ navigation }) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
+  const [dept, setDept] = useState([])
   const [valid, setValid] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+  ;
   const validate = text => {
     // console.log(text);
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -44,17 +46,19 @@ export default function Register({ navigation }) {
 
   const [data, setData] = useState({
     nama_lengkap: '',
-    nip: '',
+    nik: '',
     email: '',
     password: '',
     telepon: '',
     jabatan: '',
+    fid_departement: 1,
     email2: ''
   });
 
   const simpan = () => {
     if (
       data.nama_lengkap.length === 0 &&
+      data.nik.length === 0 &&
       data.email.length === 0 &&
       data.password.length === 0 &&
       data.jabatan.length === 0 &&
@@ -66,6 +70,10 @@ export default function Register({ navigation }) {
     } else if (data.nama_lengkap.length === 0) {
       showMessage({
         message: 'Maaf Nama Lengkap masih kosong !',
+      });
+    } else if (data.nik.length === 0) {
+      showMessage({
+        message: 'Maaf NIK masih kosong !',
       });
     } else if (data.telepon.length === 0) {
       showMessage({
@@ -109,6 +117,15 @@ export default function Register({ navigation }) {
   };
 
 
+  useEffect(() => {
+
+    axios.post(urlAPI + '/1data_departement.php').then(d => {
+      console.log('dep', d.data);
+      setDept(d.data);
+    })
+
+  }, [])
+
 
 
   return (
@@ -126,6 +143,18 @@ export default function Register({ navigation }) {
       /> */}
 
 
+        <MyGap jarak={10} />
+        <MyInput
+          label="NIK"
+          iconname="card"
+          value={data.nik}
+          onChangeText={value =>
+            setData({
+              ...data,
+              nik: value,
+            })
+          }
+        />
 
         <MyGap jarak={10} />
         <MyInput
@@ -152,6 +181,16 @@ export default function Register({ navigation }) {
             })
           }
         />
+
+
+
+        <MyGap jarak={10} />
+        <MyPicker iconname="star" label="Departement" selectedValue={data.fid_departement} onValueChange={x => {
+          setData({
+            ...data,
+            fid_departement: x
+          })
+        }} data={dept} />
 
         <MyGap jarak={10} />
         <MyInput
@@ -188,11 +227,11 @@ export default function Register({ navigation }) {
           label="Email @dsspower.co.id ( Jika ada )"
           iconname="mail"
           keyboardType="email-address"
-          value={data.email}
+          value={data.email2}
           onChangeText={value =>
             setData({
               ...data,
-              email: value,
+              email2: value,
             })
           }
         />
