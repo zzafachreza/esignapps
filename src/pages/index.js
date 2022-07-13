@@ -7,7 +7,8 @@ import Account from './Account';
 import EditProfile from './EditProfile';
 import Success from './Success';
 import MenuSlp from './MenuSlp';
-
+import MenuSlpList from './MenuSlpList';
+import MenuSlpListReq from './MenuSlpListReq';
 
 
 
@@ -18,11 +19,13 @@ import MenuSlp from './MenuSlp';
 export {
   Splash,
   GetStarted,
-  MenuSlp,
   Register,
   Success,
   Login,
   Home,
   EditProfile,
-  Account
+  Account,
+  MenuSlp,
+  MenuSlpList,
+  MenuSlpListReq
 };

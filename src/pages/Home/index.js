@@ -210,7 +210,7 @@ export default function Home({ navigation }) {
         }}>
         <DataKategori
           warna={colors.secondary}
-          onPress={() => navigation.navigate('ListData')}
+          onPress={() => navigation.navigate('MenuSlpList', user)}
           icon="file-tray-stacked-outline"
           nama="History Personal Site"
           nama2="Leaving Permit (SLP)"

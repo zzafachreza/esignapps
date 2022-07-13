@@ -26,6 +26,21 @@ import { showMessage } from 'react-native-flash-message';
 export default function MenuSlp({ navigation, route, onOK }) {
 
     const [loading, setLoading] = useState(false);
+    const [back, setBack] = useState([]);
+    const [open, setOpen] = useState(false);
+
+
+    const [back3, setBack3] = useState([]);
+    const [back4, setBack4] = useState([]);
+    const [back5, setBack5] = useState([]);
+    const [back6, setBack6] = useState([]);
+
+    const [open3, setOpen3] = useState(false);
+    const [open4, setOpen4] = useState(false);
+    const [open5, setOpen5] = useState(false);
+    const [open6, setOpen6] = useState(false);
+
+
 
     const user = route.params;
     const [pilihtujuan, setPilihtujuan] = useState({
@@ -564,25 +579,8 @@ export default function MenuSlp({ navigation, route, onOK }) {
                     })} />
                 </View>
 
-                <View style={{
 
-                    paddingVertical: 10,
-                }}>
-                    <Text style={{
-                        fontFamily: fonts.secondary[600],
-                        fontSize: windowWidth / 30,
-                        flex: 1,
-                    }}>Replaced by</Text>
-                    <TextInput autoCapitalize='none' placeholder='Enter replaced by' style={{
-                        borderBottomWidth: 1,
-                        borderBottomColor: colors.border,
-                        fontFamily: fonts.secondary[400],
-                        fontSize: windowWidth / 30,
-                    }} value={kirim.digantikan} onChangeText={x => setKirim({
-                        ...kirim,
-                        digantikan: x
-                    })} />
-                </View>
+
 
                 <View style={{
 
@@ -604,6 +602,321 @@ export default function MenuSlp({ navigation, route, onOK }) {
                     })} />
                 </View>
 
+
+                {/* replaced by */}
+                <View style={{
+
+                    paddingVertical: 10,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 30,
+                        flex: 1,
+                    }}>Replaced by (Enter Phone / name back to back)</Text>
+                    <TextInput autoCapitalize='none' placeholder='Enter replaced by' style={{
+                        borderBottomWidth: 1,
+                        borderBottomColor: colors.border,
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                    }} value={kirim.digantikan} onChangeText={x => {
+                        setKirim({
+                            ...kirim,
+                            digantikan: x
+                        });
+
+                        if (x.length > 0) {
+                            axios.post(urlAPI + '/1data_pengguna.php', {
+                                key: x
+                            }).then(res => {
+                                setOpen(true);
+                                console.warn('get user', res.data);
+                                setBack(res.data);
+                            })
+                        }
+                    }} />
+                </View>
+                {open && <ScrollView showsVerticalScrollIndicator={false} style={{
+                    backgroundColor: colors.border
+                }}>
+                    <TouchableOpacity onPress={() => setOpen(false)} style={{
+                        backgroundColor: colors.primary,
+                        justifyContent: 'center',
+                        alignItems: 'flex-end',
+                        paddingRight: 10,
+                    }}>
+                        <Icon name='close' type='ionicon' color={colors.white} />
+                    </TouchableOpacity>
+
+                    {back.map(i => {
+                        return (
+                            <TouchableOpacity onPress={() => {
+                                setKirim({
+                                    ...kirim,
+                                    digantikan: i.telepon
+                                });
+                                setOpen(false);
+                            }} style={{
+                                padding: 10,
+                                backgroundColor: colors.white,
+                                marginVertical: 1,
+                            }}>
+                                <Text>{i.telepon} - {i.nama_lengkap}</Text>
+                            </TouchableOpacity>
+                        )
+                    })}
+                </ScrollView>}
+
+                {/* Checked by Section */}
+                <View style={{
+
+                    paddingVertical: 10,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 30,
+                        flex: 1,
+                    }}>Checked by Section (Enter Phone / name)</Text>
+                    <TextInput autoCapitalize='none' placeholder='Checked by Section' style={{
+                        borderBottomWidth: 1,
+                        borderBottomColor: colors.border,
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                    }} value={kirim.to_3} onChangeText={x => {
+                        setKirim({
+                            ...kirim,
+                            to_3: x
+                        });
+
+                        if (x.length > 0) {
+                            axios.post(urlAPI + '/1data_pengguna.php', {
+                                key: x
+                            }).then(res => {
+                                setOpen3(true);
+                                console.warn('get user', res.data);
+                                setBack3(res.data);
+                            })
+                        }
+                    }} />
+                </View>
+                {open3 && <ScrollView showsVerticalScrollIndicator={false} style={{
+                    backgroundColor: colors.border
+                }}>
+                    <TouchableOpacity onPress={() => setOpen3(false)} style={{
+                        backgroundColor: colors.primary,
+                        justifyContent: 'center',
+                        alignItems: 'flex-end',
+                        paddingRight: 10,
+                    }}>
+                        <Icon name='close' type='ionicon' color={colors.white} />
+                    </TouchableOpacity>
+
+                    {back3.map(i => {
+                        return (
+                            <TouchableOpacity onPress={() => {
+                                setKirim({
+                                    ...kirim,
+                                    to_3: i.telepon
+                                });
+                                setOpen3(false);
+                            }} style={{
+                                padding: 10,
+                                backgroundColor: colors.white,
+                                marginVertical: 1,
+                            }}>
+                                <Text>{i.telepon} - {i.nama_lengkap}</Text>
+                            </TouchableOpacity>
+                        )
+                    })}
+                </ScrollView>}
+
+                {/* Approved by Division */}
+                <View style={{
+
+                    paddingVertical: 10,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 30,
+                        flex: 1,
+                    }}>Approved by Division (Enter Phone / name)</Text>
+                    <TextInput autoCapitalize='none' placeholder='Approved by Division' style={{
+                        borderBottomWidth: 1,
+                        borderBottomColor: colors.border,
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                    }} value={kirim.to_4} onChangeText={x => {
+                        setKirim({
+                            ...kirim,
+                            to_4: x
+                        });
+
+                        if (x.length > 0) {
+                            axios.post(urlAPI + '/1data_pengguna.php', {
+                                key: x
+                            }).then(res => {
+                                setOpen4(true);
+                                console.warn('get user', res.data);
+                                setBack4(res.data);
+                            })
+                        }
+                    }} />
+                </View>
+                {open4 && <ScrollView showsVerticalScrollIndicator={false} style={{
+                    backgroundColor: colors.border
+                }}>
+                    <TouchableOpacity onPress={() => setOpen4(false)} style={{
+                        backgroundColor: colors.primary,
+                        justifyContent: 'center',
+                        alignItems: 'flex-end',
+                        paddingRight: 10,
+                    }}>
+                        <Icon name='close' type='ionicon' color={colors.white} />
+                    </TouchableOpacity>
+
+                    {back4.map(i => {
+                        return (
+                            <TouchableOpacity onPress={() => {
+                                setKirim({
+                                    ...kirim,
+                                    to_4: i.telepon
+                                });
+                                setOpen4(false);
+                            }} style={{
+                                padding: 10,
+                                backgroundColor: colors.white,
+                                marginVertical: 1,
+                            }}>
+                                <Text>{i.telepon} - {i.nama_lengkap}</Text>
+                            </TouchableOpacity>
+                        )
+                    })}
+                </ScrollView>}
+
+                {/* Checked by HRGA */}
+                <View style={{
+
+                    paddingVertical: 10,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 30,
+                        flex: 1,
+                    }}>Checked by HRGA (Enter Phone / name)</Text>
+                    <TextInput autoCapitalize='none' placeholder='Checked by HRGA' style={{
+                        borderBottomWidth: 1,
+                        borderBottomColor: colors.border,
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                    }} value={kirim.to_5} onChangeText={x => {
+                        setKirim({
+                            ...kirim,
+                            to_5: x
+                        });
+
+                        if (x.length > 0) {
+                            axios.post(urlAPI + '/1data_pengguna.php', {
+                                key: x
+                            }).then(res => {
+                                setOpen5(true);
+                                console.warn('get user', res.data);
+                                setBack5(res.data);
+                            })
+                        }
+                    }} />
+                </View>
+                {open5 && <ScrollView showsVerticalScrollIndicator={false} style={{
+                    backgroundColor: colors.border
+                }}>
+                    <TouchableOpacity onPress={() => setOpen5(false)} style={{
+                        backgroundColor: colors.primary,
+                        justifyContent: 'center',
+                        alignItems: 'flex-end',
+                        paddingRight: 10,
+                    }}>
+                        <Icon name='close' type='ionicon' color={colors.white} />
+                    </TouchableOpacity>
+
+                    {back5.map(i => {
+                        return (
+                            <TouchableOpacity onPress={() => {
+                                setKirim({
+                                    ...kirim,
+                                    to_5: i.telepon
+                                });
+                                setOpen5(false);
+                            }} style={{
+                                padding: 10,
+                                backgroundColor: colors.white,
+                                marginVertical: 1,
+                            }}>
+                                <Text>{i.telepon} - {i.nama_lengkap}</Text>
+                            </TouchableOpacity>
+                        )
+                    })}
+                </ScrollView>}
+
+                {/* Acknowledge */}
+                <View style={{
+
+                    paddingVertical: 10,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: windowWidth / 30,
+                        flex: 1,
+                    }}>Acknowledge (Enter Phone / name)</Text>
+                    <TextInput autoCapitalize='none' placeholder='Acknowledge' style={{
+                        borderBottomWidth: 1,
+                        borderBottomColor: colors.border,
+                        fontFamily: fonts.secondary[400],
+                        fontSize: windowWidth / 30,
+                    }} value={kirim.to_6} onChangeText={x => {
+                        setKirim({
+                            ...kirim,
+                            to_6: x
+                        });
+
+                        if (x.length > 0) {
+                            axios.post(urlAPI + '/1data_pengguna.php', {
+                                key: x
+                            }).then(res => {
+                                setOpen6(true);
+                                console.warn('get user', res.data);
+                                setBack6(res.data);
+                            })
+                        }
+                    }} />
+                </View>
+                {open6 && <ScrollView showsVerticalScrollIndicator={false} style={{
+                    backgroundColor: colors.border
+                }}>
+                    <TouchableOpacity onPress={() => setOpen6(false)} style={{
+                        backgroundColor: colors.primary,
+                        justifyContent: 'center',
+                        alignItems: 'flex-end',
+                        paddingRight: 10,
+                    }}>
+                        <Icon name='close' type='ionicon' color={colors.white} />
+                    </TouchableOpacity>
+
+                    {back6.map(i => {
+                        return (
+                            <TouchableOpacity onPress={() => {
+                                setKirim({
+                                    ...kirim,
+                                    to_6: i.telepon
+                                });
+                                setOpen6(false);
+                            }} style={{
+                                padding: 10,
+                                backgroundColor: colors.white,
+                                marginVertical: 1,
+                            }}>
+                                <Text>{i.telepon} - {i.nama_lengkap}</Text>
+                            </TouchableOpacity>
+                        )
+                    })}
+                </ScrollView>}
 
                 <MyGap jarak={10} />
 
