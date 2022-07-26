@@ -61,8 +61,9 @@ export default function BottomNavigator({ state, descriptors, navigation }) {
           Newlabel = 'Akun';
         } else if (label === 'Laporan') {
           iconName = 'grid-outline';
-        } else if (label === 'Asset') {
-          iconName = 'pulse-outline';
+        } else if (label === 'MenuSlpListReq') {
+          iconName = 'create-outline';
+          Newlabel = 'Sign';
         } else if (label === 'History') {
           iconName = 'file-tray-stacked-outline';
           Newlabel = 'History';

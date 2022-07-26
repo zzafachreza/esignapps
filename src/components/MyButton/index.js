@@ -8,6 +8,9 @@ export default function MyButton({
   warna,
   onPress,
   Icons,
+  marginVertical,
+  flex,
+  marginHorizontal,
   radius = 10,
   colorText = 'white',
   fontWeight = 'normal',
@@ -17,7 +20,7 @@ export default function MyButton({
 }) {
   return (
     <TouchableOpacity
-      style={styles(warna, radius, borderSize, borderColor).btn}
+      style={styles(warna, radius, borderSize, borderColor, marginVertical, flex, marginHorizontal).btn}
       onPress={onPress}>
       <Icon type="ionicon" name={Icons} color={iconColor} size={18} />
       <Text
@@ -34,10 +37,12 @@ export default function MyButton({
   );
 }
 
-const styles = (warna, radius, borderSize, borderColor) =>
+const styles = (warna, radius, borderSize, borderColor, marginVertical, flex, marginHorizontal) =>
   StyleSheet.create({
     btn: {
       height: 50,
+      flex: flex,
+      marginHorizontal: marginHorizontal,
       borderRadius: radius,
       justifyContent: 'center',
       alignItems: 'center',
@@ -45,5 +50,6 @@ const styles = (warna, radius, borderSize, borderColor) =>
       borderWidth: borderSize,
       borderColor: borderColor,
       flexDirection: 'row',
+      marginVertical: marginVertical
     },
   });

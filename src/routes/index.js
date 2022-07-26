@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
 import { colors } from '../utils/colors';
 import { color } from 'react-native-reanimated';
-import { Account, EditProfile, GetStarted, Home, Login, MenuSlp, MenuSlpList, MenuSlpListReq, Register, Splash, Success } from '../pages';
+import { Account, EditProfile, GetStarted, Home, Login, MenuSlp, MenuSlpList, MenuSlpListDetail, MenuSlpListReq, MenuSlpTTD, Register, Splash, Success } from '../pages';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -23,7 +23,7 @@ const MainApp = () => {
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
       {/* <Tab.Screen name="History" component={ListData} /> */}
-      {/*<Tab.Screen name="Cart" component={Cart} />  */}
+      <Tab.Screen name="MenuSlpListReq" component={MenuSlpListReq} />
       {/* <Tab.Screen name="Notifikasi" component={Notifikasi} /> */}
       <Tab.Screen name="Account" component={Account} />
     </Tab.Navigator>
@@ -43,6 +43,14 @@ export default function Router() {
       <Stack.Screen
         name="GetStarted"
         component={GetStarted}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="MenuSlpTTD"
+        component={MenuSlpTTD}
         options={{
           headerShown: false,
         }}
@@ -125,6 +133,35 @@ export default function Router() {
         component={EditProfile}
         options={({ route, navigation }) => ({
           title: 'Edit Profile',
+          headerTintColor: colors.white,
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
+      />
+
+
+      <Stack.Screen
+        name="MenuSlpListDetail"
+        component={MenuSlpListDetail}
+        options={({ route, navigation }) => ({
+          title: 'Detail SLP',
+          headerShown: false,
           headerTintColor: colors.white,
           headerStyle: {
             backgroundColor: colors.primary,

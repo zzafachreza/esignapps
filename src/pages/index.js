@@ -9,7 +9,8 @@ import Success from './Success';
 import MenuSlp from './MenuSlp';
 import MenuSlpList from './MenuSlpList';
 import MenuSlpListReq from './MenuSlpListReq';
-
+import MenuSlpListDetail from './MenuSlpListDetail';
+import MenuSlpTTD from './MenuSlpTTD';
 
 
 
@@ -27,5 +28,8 @@ export {
   Account,
   MenuSlp,
   MenuSlpList,
-  MenuSlpListReq
+  MenuSlpListReq,
+  MenuSlpListDetail,
+  MenuSlpTTD
+
 };

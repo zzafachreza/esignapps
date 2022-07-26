@@ -969,16 +969,16 @@ export default function MenuSlp({ navigation, route, onOK }) {
                 <MyGap jarak={10} />
                 {loading && <ActivityIndicator color={colors.primary} size="large" />}
                 {!loading && <MyButton onPress={() => {
-                    setLoading(true);
-                    // console.log(kirim);
+                    // setLoading(true);
+                    console.log(kirim);
                     axios.post(urlAPI + '/1add_slp.php', kirim).then(res => {
                         console.warn(res.data);
-                        showMessage({
-                            message: 'Your request has sent !',
-                            type: 'success'
-                        });
-                        setLoading(false);
-                        navigation.replace('MainApp')
+                        // showMessage({
+                        //     message: 'Your request has sent !',
+                        //     type: 'success'
+                        // });
+                        // setLoading(false);
+                        // navigation.replace('MainApp')
                     });
                 }} Icons="cloud-upload-outline" warna={colors.primary} title="Send your request" />
 
